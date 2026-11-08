@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="lanArcA" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3bd"/>
+      <stop offset="1" stop-color="#4ff0d4"/>
+    </linearGradient>
+    <linearGradient id="lanArcB" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4ff0d4"/>
+      <stop offset="1" stop-color="#a3e635"/>
+    </linearGradient>
+    <linearGradient id="lanScreen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3bd"/>
+      <stop offset="1" stop-color="#0e9c92"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="64" height="64" rx="13" fill="#070c16"/>
+
+  <!-- 链路弧线 -->
+  <path d="M19 40C 19 22 33 14 45 20" fill="none" stroke="url(#lanArcA)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M45 26C 45 42 31 48 21 43" fill="none" stroke="url(#lanArcB)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- 显示器 -->
+  <rect x="4" y="38" width="22" height="15" rx="3" fill="#0e1626" stroke="#7ea2ff" stroke-opacity=".55" stroke-width="1.4"/>
+  <rect x="7" y="41" width="16" height="9" rx="1.6" fill="url(#lanScreen)"/>
+  <rect x="40" y="16" width="22" height="15" rx="3" fill="#0e1626" stroke="#7ea2ff" stroke-opacity=".55" stroke-width="1.4"/>
+  <rect x="43" y="19" width="16" height="9" rx="1.6" fill="url(#lanScreen)"/>
+</svg>

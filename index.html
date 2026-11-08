@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>澜链 LanLink · 局域网文件互传与即时沟通</title>
+<meta name="description" content="澜链 LanLink 是一款局域网跨平台文件互传与即时沟通工具。同一网段内无需服务器、无需账号即可直连传输文件与聊天，端到端加密，不经任何第三方中转。支持 Windows 与 macOS。" />
+<meta name="keywords" content="局域网传输,文件互传,内网聊天,端到端加密,免服务器,跨平台,LanLink,澜链" />
+<meta name="author" content="bobo" />
+<meta name="theme-color" content="#070c16" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="澜链 LanLink · 局域网文件互传与即时沟通" />
+<meta property="og:description" content="同一网段，无需服务器、无需账号。文件与消息直连抵达，全程端到端加密。" />
+<meta property="og:image" content="./assets/img/app-icon.png" />
+<meta property="og:locale" content="zh_CN" />
+<link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg" />
+<link rel="apple-touch-icon" href="./assets/img/app-icon-128.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/css/styles.css" />
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<!-- 全局氛围层：网格 / 光晕 / 颗粒 -->
+<div class="backdrop" aria-hidden="true">
+  <div class="backdrop__grid"></div>
+  <div class="backdrop__glow backdrop__glow--teal"></div>
+  <div class="backdrop__glow backdrop__glow--blue"></div>
+  <div class="backdrop__vignette"></div>
+  <div class="backdrop__grain"></div>
+</div>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<!-- ============ 顶部导航 ============ -->
+<header class="nav" id="nav">
+  <div class="shell nav__inner">
+    <a class="brand" href="#top" aria-label="澜链 LanLink 首页">
+      <span class="brand__mark"><img src="./assets/img/app-icon.png" alt="" width="30" height="30" /></span>
+      <span class="brand__text">
+        <b>澜链</b><i>LanLink</i>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="主导航">
+      <a href="#features"><em>01</em>功能</a>
+      <a href="#how"><em>02</em>原理</a>
+      <a href="#security"><em>03</em>安全</a>
+      <a href="#specs"><em>04</em>规格</a>
+      <a href="#faq"><em>05</em>问答</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--ghost btn--sm" href="https://github.com/tengyuangangben/LanLink" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub
+      </a>
+      <a class="btn btn--solid btn--sm" href="#download">下载</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ 首屏 ============ -->
+<section class="hero">
+  <div class="shell hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow reveal"><span class="pulse-dot"></span>LAN&nbsp;P2P&nbsp;MESH · v1.0.5 · MIT&nbsp;LICENSE</p>
+
+      <h1 class="hero__title reveal" style="--d:80ms">
+        局域网里，<br />
+        文件与消息，<br />
+        <span class="grad">直连抵达</span>
+      </h1>
+
+      <p class="hero__lead reveal" style="--d:160ms">
+        澜链 <b>LanLink</b> 让同一网段内的电脑
+        <b>无需服务器、无需账号</b>，直接互传文件与实时聊天。
+        传输全程走本地网络，内容经端到端加密，<b>不经过任何第三方中转</b>。
+      </p>
+
+      <div class="hero__cta reveal" style="--d:240ms">
+        <a class="btn btn--solid btn--lg" id="ctaPrimary" href="#download" data-os-primary>
+          <span class="btn__label">免费下载</span>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10.2l4.1-4.1 1.4 1.4L10 16.8 4.5 9.5l1.4-1.4L10 12.2V2Z"/><path d="M3 18h14v2H3z"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="https://github.com/tengyuangangben/LanLink" target="_blank" rel="noopener noreferrer">
+          查看源码
+        </a>
+      </div>
+
+      <ul class="hero__facts reveal" style="--d:320ms">
+        <li>免注册</li><li>零中转</li><li>端到端加密</li><li>Windows / macOS</li>
+      </ul>
+    </div>
+
+    <!-- 链路拓扑控制台 -->
+    <div class="console reveal" style="--d:200ms" id="heroConsole">
+      <div class="console__bar">
+        <span class="console__dots"><i></i><i></i><i></i></span>
+        <span class="console__path">link://topology?scope=lan</span>
+        <span class="console__status"><span class="pulse-dot"></span>LINK&nbsp;ESTABLISHED</span>
+      </div>
+
+      <div class="console__body">
+        <svg class="topo" viewBox="0 0 560 430" role="img" aria-label="两台设备通过局域网直连的链路拓扑示意图">
+          <defs>
+            <linearGradient id="flowA" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#22d3bd" stop-opacity=".15" />
+              <stop offset=".5" stop-color="#4ff0d4" />
+              <stop offset="1" stop-color="#7ea2ff" />
+            </linearGradient>
+            <linearGradient id="flowB" x1="1" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#7ea2ff" stop-opacity=".15" />
+              <stop offset=".5" stop-color="#5eead4" />
+              <stop offset="1" stop-color="#22d3bd" />
+            </linearGradient>
+            <radialGradient id="nodeGlow" cx=".5" cy=".5" r=".5">
+              <stop offset="0" stop-color="#4ff0d4" stop-opacity=".38" />
+              <stop offset="1" stop-color="#4ff0d4" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <!-- 坐标刻度 -->
+          <g class="topo__ruler">
+            <path d="M20 40h-14M20 120h-14M20 200h-14M20 280h-14M20 360h-14" />
+            <path d="M40 410v14M120 410v14M200 410v14M280 410v14M360 410v14M440 410v14M520 410v14" />
+          </g>
+
+          <!-- 链路 -->
+          <path class="topo__link topo__link--a" d="M150 268C 232 268 250 150 336 150" />
+          <path class="topo__link topo__link--b" d="M336 178C 250 178 232 296 150 296" />
+          <path class="topo__flow topo__flow--a" d="M150 268C 232 268 250 150 336 150" />
+          <path class="topo__flow topo__flow--b" d="M336 178C 250 178 232 296 150 296" />
+
+          <!-- 流动的数据包 -->
+          <g class="topo__packets">
+            <circle class="packet packet--1" r="4.5" />
+            <circle class="packet packet--2" r="3.5" />
+            <circle class="packet packet--3" r="3.5" />
+            <circle class="packet packet--4" r="3" />
+          </g>
+
+          <!-- 节点 A：本机 -->
+          <g class="topo__node">
+            <circle cx="112" cy="282" r="72" fill="url(#nodeGlow)" />
+            <rect x="56" y="250" width="112" height="70" rx="8" />
+            <rect x="66" y="260" width="92" height="48" rx="4" class="topo__screen" />
+            <path d="M96 320h32l-6 14h-20z" />
+            <path d="M84 334h56" />
+            <text x="112" y="366" class="topo__label topo__label--strong">THIS&nbsp;DEVICE</text>
+            <text x="112" y="384" class="topo__label">192.168.1.24:57680</text>
+          </g>
+
+          <!-- 节点 B：对端 -->
+          <g class="topo__node topo__node--peer">
+            <circle cx="404" cy="150" r="72" fill="url(#nodeGlow)" />
+            <rect x="348" y="118" width="112" height="70" rx="8" />
+            <rect x="358" y="128" width="92" height="48" rx="4" class="topo__screen" />
+            <path d="M388 188h32l-6 14h-20z" />
+            <path d="M376 202h56" />
+            <text x="404" y="234" class="topo__label topo__label--strong">PEER&nbsp;NODE</text>
+            <text x="404" y="252" class="topo__label">192.168.1.37:57680</text>
+          </g>
+
+          <!-- 中继禁戒标记 -->
+          <g class="topo__nobridge" transform="translate(262,218)">
+            <circle r="26" />
+            <path d="M-11 -11 11 11M11 -11 -11 11" />
+            <text x="38" y="4" class="topo__label">NO&nbsp;RELAY</text>
+          </g>
+
+          <!-- 加密标注 -->
+          <g class="topo__note" transform="translate(60,96)">
+            <text x="0" y="0" class="topo__label">ECDH · X25519</text>
+            <text x="0" y="18" class="topo__label">CHACHA20-POLY1305</text>
+          </g>
+        </svg>
+      </div>
+
+      <dl class="console__readout">
+        <div><dt>链路</dt><dd>直连 / DIRECT</dd></div>
+        <div><dt>分块</dt><dd>4 MiB</dd></div>
+        <div><dt>摘要</dt><dd>SHA-256</dd></div>
+        <div><dt>中转</dt><dd>0 跳</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- 走带 -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>无需服务器</span><i>·</i><span>无需账号</span><i>·</i><span>端到端加密</span><i>·</i>
+      <span>跨平台</span><i>·</i><span>断点续传</span><i>·</i><span>语音消息</span><i>·</i>
+      <span>群发任务</span><i>·</i><span>隐身模式</span><i>·</i><span>本地存储</span><i>·</i>
+      <span>开源 MIT</span><i>·</i>
+      <span>无需服务器</span><i>·</i><span>无需账号</span><i>·</i><span>端到端加密</span><i>·</i>
+      <span>跨平台</span><i>·</i><span>断点续传</span><i>·</i><span>语音消息</span><i>·</i>
+      <span>群发任务</span><i>·</i><span>隐身模式</span><i>·</i><span>本地存储</span><i>·</i>
+      <span>开源 MIT</span><i>·</i>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 核心功能 ============ -->
+<section class="section" id="features">
+  <div class="shell">
+    <header class="sec-head reveal">
+      <p class="sec-head__idx">01 / CAPABILITIES</p>
+      <h2 class="sec-head__title">把「传文件」做成<span class="grad">一次对话</span></h2>
+      <p class="sec-head__sub">不是网盘，不是云同步，不是远程桌面 —— 是同一间办公室里，两台电脑之间的直连通道。</p>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal" style="--d:0ms">
+        <span class="card__idx">01</span>
+        <svg class="card__fig" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="6" class="fig__core" />
+          <circle cx="32" cy="32" r="15" class="fig__wave" />
+          <circle cx="32" cy="32" r="25" class="fig__wave fig__wave--2" />
+        </svg>
+        <h3>零配置设备发现</h3>
+        <p>UDP 组播 + 定向广播双通道心跳，3 秒一轮自动发现同网段设备；多网卡环境自动遍历全部物理网卡，15 秒无心跳即标记离线。</p>
+      </article>
+
+      <article class="card reveal" style="--d:80ms">
+        <span class="card__idx">02</span>
+        <svg class="card__fig" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="8" y="14" width="48" height="36" rx="6" class="fig__box" />
+          <text x="32" y="39" text-anchor="middle" class="fig__num">6</text>
+        </svg>
+        <h3>配对式可信连接</h3>
+        <p>双方生成 6 位人工校验码，肉眼核对即可确认未被中间人篡改；必须由接收方点击接受，120 秒未处理自动拒绝。</p>
+      </article>
+
+      <article class="card reveal" style="--d:160ms">
+        <span class="card__idx">03</span>
+        <svg class="card__fig" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 8 50 16v14c0 12-8 20-18 26-10-6-18-14-18-26V16z" class="fig__shield" />
+          <path d="M25 32l5 5 10-11" class="fig__tick" />
+        </svg>
+        <h3>端到端加密</h3>
+        <p>X25519 长期身份密钥 + ECDH 派生共享密钥，HKDF-SHA256 派生会话密钥，消息与文件分块以 ChaCha20-Poly1305 加密并带认证标签。</p>
+      </article>
+
+      <article class="card reveal" style="--d:240ms">
+        <span class="card__idx">04</span>
+        <svg class="card__fig" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M8 16h34a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H22l-10 8v-8H8a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4Z" class="fig__bubble" />
+          <circle cx="20" cy="28" r="2.6" class="fig__dot" />
+          <circle cx="30" cy="28" r="2.6" class="fig__dot" />
+          <circle cx="40" cy="28" r="2.6" class="fig__dot" />
+        </svg>
+        <h3>微信式即时沟通</h3>
+        <p>文字、表情、图片、语音、文件卡片统一进入消息流；两分钟内可撤回并留痕，支持多选转发与合并转发，聊天记录可整体清理。</p>
+      </article>
+
+      <article class="card reveal" style="--d:320ms">
+        <span class="card__idx">05</span>
+        <svg class="card__fig" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="6" y="26" width="14" height="12" rx="2" class="fig__blk" />
+          <rect x="24" y="26" width="14" height="12" rx="2" class="fig__blk" />
+          <rect x="42" y="26" width="14" height="12" rx="2" class="fig__blk" />
+          <path d="M8 20h48" class="fig__axis" />
+        </svg>
+        <h3>大文件断点续传</h3>
+        <p>默认 4 MiB 分块逐块加密上传，接收端以文件摘要为键持久化已收分块；传输中断后可跨会话续传，完成时流式 SHA-256 校验通过才落盘。</p>
+      </article>
+
+      <article class="card reveal" style="--d:400ms">
+        <span class="card__idx">06</span>
+        <svg class="card__fig" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M32 6c9 0 16 7 16 16v14c0 9-7 16-16 16s-16-7-16-16V22C16 13 23 6 32 6Z" class="fig__shield" />
+          <circle cx="24" cy="30" r="4" class="fig__dot" />
+          <path d="M20 44c2-5 6-7 12-7" class="fig__tick" />
+          <path d="M40 26l12 12M52 26L40 38" class="fig__slash" />
+        </svg>
+        <h3>随时隐身与可控可见</h3>
+        <p>设置中关闭「允许被扫描发现」即停止广播心跳，进入隐身模式；对方仍可通过 IP + 端口手动添加，在线状态由 HTTP 探活独立判定。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 工作原理 ============ -->
+<section class="section section--alt" id="how">
+  <div class="shell">
+    <header class="sec-head reveal">
+      <p class="sec-head__idx">02 / PROTOCOL</p>
+      <h2 class="sec-head__title">四步，<span class="grad">建立一条私有链路</span></h2>
+      <p class="sec-head__sub">没有中心服务器参与协调，所有协商都发生在两台机器之间。</p>
+    </header>
+
+    <ol class="flow">
+      <li class="flow__step reveal" style="--d:0ms">
+        <span class="flow__num">STEP&nbsp;01</span>
+        <h3>发现</h3>
+        <p>广播心跳，自动识别 Windows / macOS / Linux 节点并展示在线状态与局域网 IP。</p>
+      </li>
+      <li class="flow__step reveal" style="--d:120ms">
+        <span class="flow__num">STEP&nbsp;02</span>
+        <h3>配对</h3>
+        <p>接收方确认并核对 6 位校验码，双方建立长期信任关系，未配对节点无法发起任何请求。</p>
+      </li>
+      <li class="flow__step reveal" style="--d:240ms">
+        <span class="flow__num">STEP&nbsp;03</span>
+        <h3>握手</h3>
+        <p>ECDH 交换密钥，HKDF-SHA256 派生会话密钥，全程在本机完成，不经第三方。</p>
+      </li>
+      <li class="flow__step reveal" style="--d:360ms">
+        <span class="flow__num">STEP&nbsp;04</span>
+        <h3>直连</h3>
+        <p>分块加密上传、实时进度、断点续传；消息与文件直接在两台设备间流动。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 安全 ============ -->
+<section class="section band" id="security">
+  <div class="shell band__inner">
+    <div class="band__copy">
+      <p class="sec-head__idx reveal">03 / SECURITY</p>
+      <h2 class="band__title reveal" style="--d:60ms">文件与消息内容，<br /><span class="grad">不会离开这条链路</span></h2>
+      <p class="band__lead reveal" style="--d:120ms">
+        澜链的核心假设很简单：同一间办公室里的两台电脑，不应该为了互传一个文件而把内容交给某个中心节点。
+      </p>
+    </div>
+
+    <ul class="band__list">
+      <li class="reveal" style="--d:60ms"><b>私钥不出本机</b><span>X25519 长期密钥对在首次启动时生成，私钥仅存本机配置目录，不随安装包分发。</span></li>
+      <li class="reveal" style="--d:140ms"><b>未配对即无权</b><span>接口层拒绝未授权节点的每一次消息与传输请求，配对必须由接收方主动确认。</span></li>
+      <li class="reveal" style="--d:220ms"><b>落盘前必校验</b><span>文件内容经流式 SHA-256 比对摘要，校验通过才写入存储目录，避免损坏文件落盘。</span></li>
+      <li class="reveal" style="--d:300ms"><b>离线也完整可用</b><span>除版本检查外全部功能在本地完成，断网环境下依然可以互传与聊天。</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 规格 ============ -->
+<section class="section" id="specs">
+  <div class="shell specs__inner">
+    <header class="sec-head sec-head--left reveal">
+      <p class="sec-head__idx">04 / SPECIFICATION</p>
+      <h2 class="sec-head__title">规格<span class="grad">书</span></h2>
+      <p class="sec-head__sub">所有对外可见的技术事实，均可在开源仓库中逐行核对。</p>
+    </header>
+
+    <div class="specs reveal" style="--d:120ms">
+      <div class="specs__row"><dt>当前版本</dt><dd>v1.0.5</dd></div>
+      <div class="specs__row"><dt>支持平台</dt><dd>Windows x64 · macOS (Apple Silicon) · Linux（仓库内可自建）</dd></div>
+      <div class="specs__row"><dt>发布形态</dt><dd>.exe 静默安装包 / .dmg 磁盘映像</dd></div>
+      <div class="specs__row"><dt>传输协议</dt><dd>局域网 HTTP 直连，4 MiB 分块逐块加密上传</dd></div>
+      <div class="specs__row"><dt>加密套件</dt><dd>X25519 · ECDH · HKDF-SHA256 · ChaCha20-Poly1305</dd></div>
+      <div class="specs__row"><dt>完整性</dt><dd>SHA-256 分块摘要与落盘校验</dd></div>
+      <div class="specs__row"><dt>发现机制</dt><dd>UDP 组播 224.0.0.251 + 定向广播，3 秒心跳</dd></div>
+      <div class="specs__row"><dt>默认端口</dt><dd>57680（多播 / 广播端口按固定偏移自动派生）</dd></div>
+      <div class="specs__row"><dt>本地存储</dt><dd>LanLinkData / files · images · voice，按日期分层</dd></div>
+      <div class="specs__row"><dt>技术栈</dt><dd>Tauri 2 · Rust · React 18 · TypeScript · SQLite</dd></div>
+      <div class="specs__row"><dt>许可协议</dt><dd>MIT</dd></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 下载 ============ -->
+<section class="section section--alt" id="download">
+  <div class="shell">
+    <header class="sec-head reveal">
+      <p class="sec-head__idx">05 / DOWNLOAD</p>
+      <h2 class="sec-head__title">取一份<span class="grad">安装包</span></h2>
+      <p class="sec-head__sub">免安装、免注册、免账号。装好即用，同网段自动发现。</p>
+    </header>
+
+    <div class="os-detect reveal" id="osDetect" hidden>
+      <span class="pulse-dot"></span>
+      已识别你的系统：<b id="osDetectName">—</b>
+      <span class="os-detect__hint" id="osDetectHint"></span>
+    </div>
+
+    <div class="dl-grid">
+      <article class="dl-card dl-card--win reveal" style="--d:0ms" data-platform="windows">
+        <div class="dl-card__head">
+          <span class="dl-card__os">WINDOWS</span>
+          <span class="dl-card__arch">x64</span>
+          <span class="dl-card__flag" data-os-flag>你的平台</span>
+        </div>
+        <h3 class="dl-card__name">LanLink_1.0.5_x64-setup.exe</h3>
+        <p class="dl-card__meta">4.22 MiB · 4,425,963 字节 · 静默安装包</p>
+        <a class="btn btn--solid btn--block" href="https://peihutech.com:8443/license/api/v1/share/XLX89Thvw-nfLnGmcYeksj4mB6eDwLAnkqWglus0iyc.Mzd8MTgyNTY2MDg5NQ" download>
+          下载 Windows 版
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10.2l4.1-4.1 1.4 1.4L10 16.8 4.5 9.5l1.4-1.4L10 12.2V2Z"/><path d="M3 18h14v2H3z"/></svg>
+        </a>
+        <p class="dl-card__note">需要 Windows 10 及以上系统与 WebView2 运行时（多数系统已内置）。</p>
+        <div class="dl-card__hash">
+          <span>SHA-256</span>
+          <code id="hashWin">1d76adf0e95a9166bdff73c1827f2432d25a7f3dcf11bd85dfbd859f2f3e8c9d</code>
+          <button type="button" class="copy-btn" data-copy="1d76adf0e95a9166bdff73c1827f2432d25a7f3dcf11bd85dfbd859f2f3e8c9d">复制</button>
+        </div>
+      </article>
+
+      <article class="dl-card dl-card--mac reveal" style="--d:120ms" data-platform="macos">
+        <div class="dl-card__head">
+          <span class="dl-card__os">macOS</span>
+          <span class="dl-card__arch">aarch64</span>
+          <span class="dl-card__flag" data-os-flag>你的平台</span>
+        </div>
+        <h3 class="dl-card__name">LanLink_1.0.5_aarch64.dmg</h3>
+        <p class="dl-card__meta">7.25 MiB · 7,602,521 字节 · 磁盘映像</p>
+        <a class="btn btn--solid btn--block" href="https://peihutech.com:8443/license/api/v1/share/205EvuGqT8wAovuAJUD6yqlN8aV5moxTpbvW6ArHdhA.Mzh8MTgyNTY2MDk0NA" download>
+          下载 macOS 版
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10.2l4.1-4.1 1.4 1.4L10 16.8 4.5 9.5l1.4-1.4L10 12.2V2Z"/><path d="M3 18h14v2H3z"/></svg>
+        </a>
+        <p class="dl-card__note">面向 Apple Silicon（M 系列）。首次启动需在「系统设置 → 隐私与安全性」中允许本地网络与麦克风。</p>
+        <div class="dl-card__hash">
+          <span>SHA-256</span>
+          <code id="hashMac">a36181394b2459b9bd1371a2ad4d138d1e733cb38a9ba6468dffe5c3ce157106</code>
+          <button type="button" class="copy-btn" data-copy="a36181394b2459b9bd1371a2ad4d138d1e733cb38a9ba6468dffe5c3ce157106">复制</button>
+        </div>
+      </article>
+    </div>
+
+    <p class="dl-foot reveal">
+      安装包由 Aurora License Server 平台直接分发，链接固定有效。校验值可用
+      <code>certutil -hashfile LanLink_1.0.5_x64-setup.exe SHA256</code>（Windows）
+      或 <code>shasum -a 256 LanLink_1.0.5_aarch64.dmg</code>（macOS）自行核对。
+    </p>
+  </div>
+</section>
+
+<!-- ============ 常见问题 ============ -->
+<section class="section" id="faq">
+  <div class="shell faq__inner">
+    <header class="sec-head sec-head--left reveal">
+      <p class="sec-head__idx">06 / FAQ</p>
+      <h2 class="sec-head__title">常见<span class="grad">疑问</span></h2>
+    </header>
+
+    <div class="faq reveal" style="--d:100ms">
+      <details>
+        <summary>安装后还需要注册或登录账号吗？<span class="faq__mark"></span></summary>
+        <p>不需要。澜链没有任何账号体系，打开即可使用；设备之间的信任通过配对时的 6 位校验码建立，卸载重装后重新配对即可。</p>
+      </details>
+      <details>
+        <summary>必须联网才能使用吗？<span class="faq__mark"></span></summary>
+        <p>不需要。除启动后后台异步检查版本更新外，设备发现、配对、传输与聊天全部在本地网络内完成，断网环境同样可用。</p>
+      </details>
+      <details>
+        <summary>支持 Linux 吗？<span class="faq__mark"></span></summary>
+        <p>仓库内已包含 Linux 构建配置，可自行构建 <code>.AppImage</code> 与 <code>.deb</code>；本页面目前提供官方维护的 Windows 与 macOS 安装包。</p>
+      </details>
+      <details>
+        <summary>收到的不明文件会被自动运行吗？<span class="faq__mark"></span></summary>
+        <p>不会。可选的「接收后自动打开」仅对图片、文档、音视频等安全预览类型生效，exe、bat、ps1、msi、vbs、docm 等可执行或脚本文件一律不自动运行。</p>
+      </details>
+      <details>
+        <summary>收到的文件存在哪里？可以自己指定吗？<span class="faq__mark"></span></summary>
+        <p>默认落在 <code>LanLinkData/</code> 下的 files / images / voice 目录，按日期分层存放；可在设置面板改到其他磁盘，跨磁盘落盘会自动改用复制策略。</p>
+      </details>
+      <details>
+        <summary>支持多人群发吗？<span class="faq__mark"></span></summary>
+        <p>支持多选已配对在线设备进行群发：文字、表情、图片与文件均可，任务中心按设备展示进度与结果，并支持取消剩余目标与重试失败目标。群聊暂不在当前版本范围内。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 开源 ============ -->
+<section class="section section--alt" id="oss">
+  <div class="shell oss">
+    <div class="oss__copy">
+      <p class="sec-head__idx reveal">07 / OPEN SOURCE</p>
+      <h2 class="sec-head__title reveal" style="--d:60ms">代码全部<span class="grad">公开</span></h2>
+      <p class="sec-head__sub reveal" style="--d:120ms">
+        MIT 许可。协议实现、加密方案、打包脚本与全部历史变更都在仓库里，欢迎自行构建、审计与二次开发。
+      </p>
+      <div class="oss__tags reveal" style="--d:180ms">
+        <span>Tauri 2</span><span>Rust</span><span>React 18</span><span>TypeScript</span><span>SQLite</span><span>MIT</span>
+      </div>
+    </div>
+
+    <div class="oss__panel reveal" style="--d:150ms">
+      <div class="oss__panel-bar">
+        <span class="console__dots"><i></i><i></i><i></i></span>
+        <span class="console__path">github.com/tengyuangangben/LanLink</span>
+      </div>
+      <pre class="oss__code"><code><span class="c-comment"># 克隆并构建桌面客户端</span>
+<span class="c-cmd">git clone</span> https://github.com/tengyuangangben/LanLink.git
+<span class="c-cmd">cd</span> LanLink &amp;&amp; <span class="c-cmd">pnpm install</span>
+<span class="c-cmd">pnpm build</span>
+
+<span class="c-comment"># 或直接下载安装包</span>
+<span class="c-cmd">open</span> LanLink_1.0.5_x64-setup.exe</code></pre>
+      <div class="oss__panel-foot">
+        <a class="btn btn--solid" href="https://github.com/tengyuangangben/LanLink" target="_blank" rel="noopener noreferrer">
+          前往 GitHub 仓库
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 3H17v4.5h-2V5.7l-6.1 6.1-1.4-1.4L13.5 4.3V6h-1V3Z"/><path d="M4 4h5v2H6v8h8v-3h2v5H4V4Z"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="https://github.com/tengyuangangben/LanLink/releases" target="_blank" rel="noopener noreferrer">发行版本</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ 页脚 ============ -->
+<footer class="foot">
+  <div class="shell foot__inner">
+    <div class="foot__brand">
+      <span class="brand__mark"><img src="./assets/img/app-icon-128.png" alt="" width="26" height="26" /></span>
+      <div>
+        <b>澜链 LanLink</b>
+        <p>局域网内的跨平台文件互传与即时沟通工具</p>
+      </div>
+    </div>
+
+    <div class="foot__cols">
+      <div class="foot__col">
+        <h4>产品</h4>
+        <a href="#features">核心功能</a>
+        <a href="#how">工作原理</a>
+        <a href="#specs">规格书</a>
+        <a href="#download">下载</a>
+      </div>
+      <div class="foot__col">
+        <h4>资源</h4>
+        <a href="https://github.com/tengyuangangben/LanLink" target="_blank" rel="noopener noreferrer">源码仓库</a>
+        <a href="https://github.com/tengyuangangben/LanLink/releases" target="_blank" rel="noopener noreferrer">发行说明</a>
+        <a href="https://github.com/tengyuangangben/LanLink/issues" target="_blank" rel="noopener noreferrer">问题反馈</a>
+        <a href="https://github.com/tengyuangangben/LanLink/blob/main/README.md" target="_blank" rel="noopener noreferrer">使用说明</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell foot__bar">
+    <p>© 2026 澜链 LanLink · MIT License · v1.0.5</p>
+    <p>macOS 安装包面向 Apple Silicon；Windows 安装包为 x64 架构。</p>
+  </div>
+</footer>
+
+<!-- 移动端吸底下载条 -->
+<div class="mobile-bar" id="mobileBar">
+  <span class="mobile-bar__text">澜链 <b>v1.0.5</b> · 局域网直连传输</span>
+  <a class="btn btn--solid btn--sm" id="mobileCta" href="#download">立即下载</a>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">已复制到剪贴板</div>
+
+<script src="./assets/js/main.js"></script>
+</body>
+</html>

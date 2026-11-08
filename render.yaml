@@ -1,0 +1,11 @@
+# Render 静态站点部署声明
+# 使用方式：在 Render 控制台选择 "New" → "Blueprint"，指向本仓库即可
+services:
+  - type: web
+    name: lanlink-website
+    runtime: static
+    # 纯静态站点，无需构建步骤
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    autoDeploy: true
