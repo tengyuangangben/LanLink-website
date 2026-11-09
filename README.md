@@ -136,17 +136,33 @@ Build Command 同样为空、Publish Path 为 `.`。
    - `.dl-card__meta` 文件体积
    - `.dl-card__hash code` SHA-256 校验值
    - `<a href>` 的分享链接
-2. `index.html` 首屏 `.eyebrow` 与页脚的版本号 `v1.0.5`
-3. `index.html` `#oss` 区块的命令示例文件名
+2. `index.html` 规格书区块的版本行（`Windows 版本` / `macOS 版本`）
+3. `index.html` `#oss` 区块的命令示例文件名，以及下载区块底部的校验命令示例
+4. `index.html` 演示视频区块的 `.demo__tag` 版本标注（需与视频画面内容一致）
+
+> 当前为**分平台版本**：Windows `v1.0.6`、macOS `v1.0.5`。因此首屏 `.eyebrow`、
+> 页脚与移动端吸底条**不再展示单一版本号**，版本信息只在规格书与下载卡片中按平台列出。
+> 若两平台版本重新对齐，再考虑恢复全局版本标注。
 
 获取下载链接体积与校验值的命令：
 
 ```bash
 # Windows
-certutil -hashfile LanLink_1.0.5_x64-setup.exe SHA256
+certutil -hashfile LanLink_1.0.6_x64-setup.exe SHA256
 
 # macOS
 shasum -a 256 LanLink_1.0.5_aarch64.dmg
+```
+
+分享链接的元信息可用 Range 请求探测（只取首字节）：
+
+```powershell
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+$req = [System.Net.HttpWebRequest]::Create('https://aurora.medicalservice.tech/license/api/v1/share/<令牌>')
+$req.AddRange(0, 0)
+$resp = $req.GetResponse()
+$resp.Headers['Content-Range']       # 形如 bytes 0-0/4428427，即总长度
+$resp.Headers['Content-Disposition']  # 内含真实文件名
 ```
 
 ## 定制入口
