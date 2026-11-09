@@ -1,0 +1,97 @@
+/*
+ * 文件名: fonts.css
+ * 作 者: AI自动生成
+ * 创建时间: 2026-11-08
+ * 功能描述: 站点字体的本地自托管声明。字体按页面实际用到的字符精确裁剪，
+ *           取代 Google Fonts 外部引用，避免国内网络不可达导致的字体闪烁与回退。
+ * 作用域: 模块内部专用
+ * 依赖关系: assets/fonts/ 目录下的 woff2 字体分片
+ */
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/noto-sans-sc-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Sans SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/noto-sans-sc-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/noto-serif-sc-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/noto-serif-sc-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('../fonts/noto-serif-sc-900.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/chakra-petch-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/chakra-petch-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/chakra-petch-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/ibm-plex-mono-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/ibm-plex-mono-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/ibm-plex-mono-600.woff2') format('woff2');
+}

@@ -15,9 +15,7 @@
 <meta property="og:locale" content="zh_CN" />
 <link rel="icon" type="image/svg+xml" href="./assets/img/favicon.svg" />
 <link rel="apple-touch-icon" href="./assets/img/app-icon-128.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./assets/css/fonts.css" />
 <link rel="stylesheet" href="./assets/css/styles.css" />
 <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -45,10 +43,12 @@
 
     <nav class="nav__links" aria-label="主导航">
       <a href="#features"><em>01</em>功能</a>
-      <a href="#how"><em>02</em>原理</a>
-      <a href="#security"><em>03</em>安全</a>
-      <a href="#specs"><em>04</em>规格</a>
-      <a href="#faq"><em>05</em>问答</a>
+      <a href="#demo"><em>02</em>演示</a>
+      <a href="#how"><em>03</em>原理</a>
+      <a href="#security"><em>04</em>安全</a>
+      <a href="#specs"><em>05</em>规格</a>
+      <a href="#download"><em>06</em>下载</a>
+      <a href="#faq"><em>07</em>问答</a>
     </nav>
 
     <div class="nav__actions">
@@ -284,11 +284,61 @@
   </div>
 </section>
 
+<!-- ============ 操作演示 ============ -->
+<section class="section" id="demo">
+  <div class="shell">
+    <header class="sec-head reveal">
+      <p class="sec-head__idx">02 / WALKTHROUGH</p>
+      <h2 class="sec-head__title">32 秒，<span class="grad">看完澜链怎么用</span></h2>
+      <p class="sec-head__sub">真实界面录制，箭头精确标注每一个按钮：从打开软件，到把文件发到同事的电脑上。</p>
+    </header>
+
+    <div class="demo reveal">
+      <div class="demo__stage">
+        <div class="demo__frame">
+          <video
+            id="demoVideo"
+            class="demo__video"
+            controls
+            playsinline
+            preload="metadata"
+            poster="./assets/img/video-poster.jpg"
+            width="1920"
+            height="1080"
+          >
+            <source src="./assets/video/lanlink-ui-walkthrough.mp4" type="video/mp4" />
+            你的浏览器不支持 HTML5 视频播放，请
+            <a href="./assets/video/lanlink-ui-walkthrough.mp4" download>直接下载 MP4 文件</a>。
+          </video>
+        </div>
+        <p class="demo__meta">
+          <span class="demo__tag">UI WALKTHROUGH · v1.0.5</span>
+          <span>1920×1080 · H.264 · 31.6 秒 · 6.5 MB</span>
+          <a class="demo__dl" href="./assets/video/lanlink-ui-walkthrough.mp4" download>下载视频</a>
+        </p>
+      </div>
+
+      <ol class="demo__chapters" id="demoChapters" aria-label="演示章节">
+        <li class="demo__chapter reveal" style="--d:0ms"><button type="button" data-time="0"><span class="demo__no">00</span><span class="demo__ti">开场 · 澜链是什么</span><span class="demo__tc">00:00</span></button></li>
+        <li class="demo__chapter reveal" style="--d:40ms"><button type="button" data-time="3"><span class="demo__no">01</span><span class="demo__ti">联系人主界面</span><span class="demo__tc">00:03</span></button></li>
+        <li class="demo__chapter reveal" style="--d:80ms"><button type="button" data-time="6.2"><span class="demo__no">02</span><span class="demo__ti">扫描局域网</span><span class="demo__tc">00:06</span></button></li>
+        <li class="demo__chapter reveal" style="--d:120ms"><button type="button" data-time="9.4"><span class="demo__no">03</span><span class="demo__ti">手动添加设备</span><span class="demo__tc">00:09</span></button></li>
+        <li class="demo__chapter reveal" style="--d:160ms"><button type="button" data-time="12.6"><span class="demo__no">04</span><span class="demo__ti">多选群发</span><span class="demo__tc">00:13</span></button></li>
+        <li class="demo__chapter reveal" style="--d:200ms"><button type="button" data-time="15.8"><span class="demo__no">05</span><span class="demo__ti">主题与可见性</span><span class="demo__tc">00:16</span></button></li>
+        <li class="demo__chapter reveal" style="--d:240ms"><button type="button" data-time="19"><span class="demo__no">06</span><span class="demo__ti">通知与端口</span><span class="demo__tc">00:19</span></button></li>
+        <li class="demo__chapter reveal" style="--d:280ms"><button type="button" data-time="22.2"><span class="demo__no">07</span><span class="demo__ti">存储与更新</span><span class="demo__tc">00:22</span></button></li>
+        <li class="demo__chapter reveal" style="--d:320ms"><button type="button" data-time="25.4"><span class="demo__no">08</span><span class="demo__ti">设备详情与校验码</span><span class="demo__tc">00:25</span></button></li>
+        <li class="demo__chapter reveal" style="--d:360ms"><button type="button" data-time="28.6"><span class="demo__no">09</span><span class="demo__ti">开箱即用</span><span class="demo__tc">00:29</span></button></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 工作原理 ============ -->
 <section class="section section--alt" id="how">
   <div class="shell">
     <header class="sec-head reveal">
-      <p class="sec-head__idx">02 / PROTOCOL</p>
+      <p class="sec-head__idx">03 / PROTOCOL</p>
       <h2 class="sec-head__title">四步，<span class="grad">建立一条私有链路</span></h2>
       <p class="sec-head__sub">没有中心服务器参与协调，所有协商都发生在两台机器之间。</p>
     </header>
@@ -322,7 +372,7 @@
 <section class="section band" id="security">
   <div class="shell band__inner">
     <div class="band__copy">
-      <p class="sec-head__idx reveal">03 / SECURITY</p>
+      <p class="sec-head__idx reveal">04 / SECURITY</p>
       <h2 class="band__title reveal" style="--d:60ms">文件与消息内容，<br /><span class="grad">不会离开这条链路</span></h2>
       <p class="band__lead reveal" style="--d:120ms">
         澜链的核心假设很简单：同一间办公室里的两台电脑，不应该为了互传一个文件而把内容交给某个中心节点。
@@ -342,7 +392,7 @@
 <section class="section" id="specs">
   <div class="shell specs__inner">
     <header class="sec-head sec-head--left reveal">
-      <p class="sec-head__idx">04 / SPECIFICATION</p>
+      <p class="sec-head__idx">05 / SPECIFICATION</p>
       <h2 class="sec-head__title">规格<span class="grad">书</span></h2>
       <p class="sec-head__sub">所有对外可见的技术事实，均可在开源仓库中逐行核对。</p>
     </header>
@@ -367,7 +417,7 @@
 <section class="section section--alt" id="download">
   <div class="shell">
     <header class="sec-head reveal">
-      <p class="sec-head__idx">05 / DOWNLOAD</p>
+      <p class="sec-head__idx">06 / DOWNLOAD</p>
       <h2 class="sec-head__title">取一份<span class="grad">安装包</span></h2>
       <p class="sec-head__sub">免安装、免注册、免账号。装好即用，同网段自动发现。</p>
     </header>
@@ -432,7 +482,7 @@
 <section class="section" id="faq">
   <div class="shell faq__inner">
     <header class="sec-head sec-head--left reveal">
-      <p class="sec-head__idx">06 / FAQ</p>
+      <p class="sec-head__idx">07 / FAQ</p>
       <h2 class="sec-head__title">常见<span class="grad">疑问</span></h2>
     </header>
 
@@ -469,7 +519,7 @@
 <section class="section section--alt" id="oss">
   <div class="shell oss">
     <div class="oss__copy">
-      <p class="sec-head__idx reveal">07 / OPEN SOURCE</p>
+      <p class="sec-head__idx reveal">08 / OPEN SOURCE</p>
       <h2 class="sec-head__title reveal" style="--d:60ms">代码全部<span class="grad">公开</span></h2>
       <p class="sec-head__sub reveal" style="--d:120ms">
         MIT 许可。协议实现、加密方案、打包脚本与全部历史变更都在仓库里，欢迎自行构建、审计与二次开发。

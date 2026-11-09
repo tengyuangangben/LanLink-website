@@ -1,6 +1,6 @@
 /* ==========================================================================
    澜链 LanLink · 产品宣发页交互脚本
-   职责：入场动画、滚动进度、导航吸顶、平台识别、校验值复制、控制台聚光
+   职责：入场动画、滚动进度、导航吸顶、平台识别、校验值复制、控制台聚光、演示视频章节
    依赖：无（原生 JS，无构建步骤）
    ========================================================================== */
 (function () {
@@ -207,7 +207,48 @@
     });
   }
 
-  /* ---------- 八、平滑滚动兜底（老浏览器） ---------- */
+  /* ---------- 八、操作演示视频：章节跳转与当前章节高亮 ---------- */
+  var demoVideo = document.getElementById('demoVideo');
+  var demoChapters = document.getElementById('demoChapters');
+
+  if (demoVideo && demoChapters) {
+    var chapterButtons = demoChapters.querySelectorAll('button[data-time]');
+    var chapterTimes = [];
+    var activeChapter = -1;
+
+    for (var c = 0; c < chapterButtons.length; c++) {
+      chapterTimes.push(parseFloat(chapterButtons[c].getAttribute('data-time')) || 0);
+      chapterButtons[c].addEventListener('click', function () {
+        var target = parseFloat(this.getAttribute('data-time')) || 0;
+        demoVideo.currentTime = target;
+        /* 自动播放可能被浏览器策略拒绝，失败时静默忽略，用户可手动点击播放 */
+        var playPromise = demoVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(function () {});
+        }
+      });
+    }
+
+    /* 根据播放进度高亮当前章节（章节起点前 0.25 秒即切换，避免临界抖动） */
+    function syncActiveChapter() {
+      var current = demoVideo.currentTime;
+      var index = 0;
+      for (var i = 0; i < chapterTimes.length; i++) {
+        if (current >= chapterTimes[i] - 0.25) index = i;
+      }
+      if (index === activeChapter) return;
+      activeChapter = index;
+      for (var j = 0; j < chapterButtons.length; j++) {
+        chapterButtons[j].classList.toggle('is-active', j === index);
+      }
+    }
+
+    demoVideo.addEventListener('timeupdate', syncActiveChapter);
+    demoVideo.addEventListener('seeked', syncActiveChapter);
+    demoVideo.addEventListener('loadedmetadata', syncActiveChapter);
+  }
+
+  /* ---------- 九、平滑滚动兜底（老浏览器） ---------- */
   if (!('scrollBehavior' in document.documentElement.style)) {
     document.querySelectorAll('a[href^="#"]').forEach(function (link) {
       link.addEventListener('click', function (event) {

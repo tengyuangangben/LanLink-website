@@ -744,7 +744,115 @@ code {
 .flow__step h3 { font-size: 20px; margin-bottom: 10px; }
 .flow__step p { color: var(--text-dim); font-size: 13.8px; line-height: 1.85; }
 
-/* ---------- 十三、安全横幅 ---------- */
+/* ---------- 十三、操作演示 ---------- */
+.demo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.58fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.demo__stage { min-width: 0; }
+
+.demo__frame {
+  position: relative;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: #04070e;
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+}
+.demo__frame::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 2;
+  background: linear-gradient(90deg, var(--teal-400), var(--blue-400));
+  opacity: 0.75;
+}
+
+.demo__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #04070e;
+}
+
+.demo__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 18px;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-faint);
+}
+.demo__tag {
+  color: var(--teal-500);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.demo__dl {
+  margin-left: auto;
+  color: var(--teal-300);
+  border-bottom: 1px solid rgba(127, 243, 224, 0.35);
+  padding-bottom: 1px;
+  transition: color 220ms var(--ease), border-color 220ms var(--ease);
+}
+.demo__dl:hover { color: var(--teal-400); border-color: var(--teal-400); }
+
+.demo__chapters {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+.demo__chapter button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 14px;
+  padding: 13px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(7, 12, 22, 0.62);
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 260ms var(--ease), background 260ms var(--ease), color 260ms var(--ease), transform 260ms var(--ease);
+}
+.demo__chapter button:hover {
+  border-color: rgba(34, 211, 189, 0.42);
+  background: rgba(12, 20, 35, 0.92);
+  color: var(--text);
+  transform: translateX(3px);
+}
+.demo__chapter button.is-active {
+  border-color: rgba(34, 211, 189, 0.55);
+  background: rgba(15, 40, 48, 0.75);
+  color: var(--text);
+}
+.demo__no {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--teal-600);
+}
+.demo__chapter button.is-active .demo__no { color: var(--teal-300); }
+.demo__ti { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.demo__tc {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-faint);
+}
+
+/* ---------- 十四、安全横幅 ---------- */
 .band { overflow: hidden; }
 .band__inner {
   display: grid;
@@ -779,7 +887,7 @@ code {
 }
 .band__list span { color: var(--text-dim); font-size: 13.8px; line-height: 1.8; }
 
-/* ---------- 十四、规格书 ---------- */
+/* ---------- 十五、规格书 ---------- */
 .specs__inner {
   display: grid;
   grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
@@ -816,7 +924,7 @@ code {
   word-break: break-word;
 }
 
-/* ---------- 十五、下载 ---------- */
+/* ---------- 十六、下载 ---------- */
 .os-detect {
   display: flex;
   align-items: center;
@@ -970,7 +1078,7 @@ code {
 }
 .dl-foot code { font-size: 12px; }
 
-/* ---------- 十六、FAQ ---------- */
+/* ---------- 十七、FAQ ---------- */
 .faq__inner { max-width: 860px; margin: 0 auto; }
 .faq { border-top: 1px solid var(--line); }
 .faq details {
@@ -1013,7 +1121,7 @@ code {
   line-height: 1.9;
 }
 
-/* ---------- 十七、开源 ---------- */
+/* ---------- 十八、开源 ---------- */
 .oss {
   display: grid;
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
@@ -1068,7 +1176,7 @@ code {
   flex-wrap: wrap;
 }
 
-/* ---------- 十八、页脚 ---------- */
+/* ---------- 十九、页脚 ---------- */
 .foot {
   border-top: 1px solid var(--line);
   background: rgba(4, 7, 14, 0.85);
@@ -1110,7 +1218,7 @@ code {
   color: var(--text-faint);
 }
 
-/* ---------- 十九、移动端吸底条 ---------- */
+/* ---------- 二十、移动端吸底条 ---------- */
 .mobile-bar {
   position: fixed;
   left: 0; right: 0; bottom: 0;
@@ -1130,7 +1238,7 @@ code {
 .mobile-bar__text { font-size: 12.5px; color: var(--text-faint); }
 .mobile-bar__text b { color: var(--teal-300); font-family: var(--font-mono); font-size: 12px; }
 
-/* ---------- 二十、提示条 ---------- */
+/* ---------- 二十一、提示条 ---------- */
 .toast {
   position: fixed;
   left: 50%;
@@ -1170,6 +1278,8 @@ code {
   .oss { grid-template-columns: 1fr; gap: 36px; }
   .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .flow__step::after { display: none; }
+  .demo { grid-template-columns: 1fr; gap: 28px; }
+  .demo__chapters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 860px) {
@@ -1189,6 +1299,9 @@ code {
   .hero__title { font-size: 2.15rem; }
   .cards { grid-template-columns: 1fr; }
   .flow { grid-template-columns: 1fr; }
+  .demo__chapters { grid-template-columns: 1fr; }
+  .demo__meta { font-size: 11.5px; }
+  .demo__dl { margin-left: 0; }
   .console__readout { grid-template-columns: repeat(2, 1fr); }
   .console__readout > div:nth-child(2) { border-right: none; }
   .console__readout > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
